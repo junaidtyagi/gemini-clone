@@ -11,12 +11,12 @@ const ContextProvider=(props)=>{
     const [showResult,setShowResult]= useState(false);
     const [loading,setLoading]= useState(false);
     const [resultData,setResultData]= useState("");
-    // this is not working in my laptop 
-    // const delayPara=(index , nextWord)=>{
-    //     setTimeout(function (){
-    //         setResultData(prev=> prev + nextWord)
-    //     } ,75*index)
-    // }
+    //this is not working in my laptop 
+    const delayPara=(index , nextWord)=>{
+        setTimeout(function (){
+            setResultData(prev=> prev + nextWord)
+        } ,75*index)
+    }
     
     const newChat=()=>{
         setLoading(false);
@@ -47,13 +47,13 @@ const ContextProvider=(props)=>{
             newResponse+= "<b>"+ responseArray[i] +"</b>"
         }
        }
-       let newResponse2 = newResponse.split("*").join("<br/>")
-       setResultData(newResponse2);
-    //    let newResponseArray = newResponse2.split(" ");
-    //    for(let i=0; newResponseArray.length; i++){
-    //         const nextWord= newResponseArray[i];
-    //         delayPara(i, nextWord +" ");
-    //    }
+       let newResponse2 = newResponse.split("*").join("</br>")
+       //setResultData(newResponse2);
+       let newResponseArray = newResponse2.split(" ");
+       for(let i=0; newResponseArray.length; i++){
+            const nextWord= newResponseArray[i];
+            delayPara(i, nextWord +" ");
+       }
        setLoading(false);
        setInput("");
     }
